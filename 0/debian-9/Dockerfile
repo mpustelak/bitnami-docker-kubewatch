@@ -3,9 +3,10 @@ LABEL maintainer "Bitnami <containers@bitnami.com>"
 
 # Install required system packages and dependencies
 RUN install_packages ca-certificates curl libc6 procps unzip wget
-RUN wget -nc -P /tmp/bitnami/pkg/cache/ https://raw.githubusercontent.com/mpustelak/kubewatch/master/kubewatch.1.0.tar.gz && \
-    tar -zxf /tmp/bitnami/pkg/cache/kubewatch.1.0.tar.gz -P --transform 's|files|/opt/bitnami|' --wildcards 'files' && \
-    rm -rf /tmp/bitnami/pkg/cache/kubewatch.1.0.tar.gz
+RUN wget -nc -P /tmp/bitnami/pkg/cache/ https://raw.githubusercontent.com/mpustelak/kubewatch/master/kubewatch.1.2.tar.gz && \
+    tar -zxf /tmp/bitnami/pkg/cache/kubewatch.1.2.tar.gz -P --transform 's|files|/opt/bitnami|' --wildcards 'files' && \
+    rm -rf /tmp/bitnami/pkg/cache/kubewatch.1.2.tar.gz
+
 
 COPY rootfs /
 RUN chown -R 1001:root /opt/bitnami/kubewatch/ && chmod g+rwX /opt/bitnami/kubewatch/
