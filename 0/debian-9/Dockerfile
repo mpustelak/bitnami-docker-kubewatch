@@ -3,10 +3,9 @@ LABEL maintainer "Bitnami <containers@bitnami.com>"
 
 # Install required system packages and dependencies
 RUN install_packages ca-certificates curl libc6 procps unzip wget
-RUN wget -nc -P /tmp/bitnami/pkg/cache/ https://downloads.bitnami.com/files/stacksmith/kubewatch-0.0.4-24-linux-amd64-debian-9.tar.gz && \
-    echo "0bc02ed6d260d60d384894da342ab7746a069ff875b3dcdae5023faa388dc549  /tmp/bitnami/pkg/cache/kubewatch-0.0.4-24-linux-amd64-debian-9.tar.gz" | sha256sum -c - && \
-    tar -zxf /tmp/bitnami/pkg/cache/kubewatch-0.0.4-24-linux-amd64-debian-9.tar.gz -P --transform 's|^[^/]*/files|/opt/bitnami|' --wildcards '*/files' && \
-    rm -rf /tmp/bitnami/pkg/cache/kubewatch-0.0.4-24-linux-amd64-debian-9.tar.gz
+RUN wget -nc -P /tmp/bitnami/pkg/cache/ https://raw.githubusercontent.com/mpustelak/kubewatch/master/kubewatch.tar.gz && \
+    tar -zxf /tmp/bitnami/pkg/cache/kubewatch.tar.gz -P --transform 's|files|/opt/bitnami|' --wildcards 'files' && \
+    rm -rf /tmp/bitnami/pkg/cache/kubewatch.tar.gz
 
 COPY rootfs /
 RUN chown -R 1001:root /opt/bitnami/kubewatch/ && chmod g+rwX /opt/bitnami/kubewatch/
